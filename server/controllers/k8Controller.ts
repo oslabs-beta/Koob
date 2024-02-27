@@ -42,29 +42,6 @@ interface Pod {
   containers: object[]
 }
 
-// interface Service {
-//   name: string,
-//   ports: number[],
-//   selector: string
-// }
-
-// interface Controller {
-//   name: string,
-//   kind: string,
-//   isManaging: boolean
-// }
-
-// interface Deployment {
-//   name: string,
-//   replicas: number,
-//   kind: string,
-//   status: string,
-//   namespace: string,
-//   createdAt: Date,
-//   labels: Map<string,string>,
-//   references: Controller[]
-// }
-
 export const k8Controller = {
   
   localNamespaces : async (req: Request, res: Response, next: NextFunction) : Promise<unknown> => {  
@@ -121,31 +98,6 @@ export const k8Controller = {
     }
   },
 
-  // localServices : async (req: Request, res: Response, next: NextFunction) : Promise<unknown> => {
-  //   try {
-  //     const services : Service[] = [];
-  //     await coreV1Api.listNamespacedService('default').then((res:any) => {
-  //       for (let i = 0; i < res.body.items.length; i++) {
-  //         services.push({
-  //           name: res.body.items[i].metadata.name,
-  //           ports: [],
-  //           selector: res.body.items[i].spec.selector || undefined,
-  //         });
-  //         for (let j = 0; j < res.body.items[i].spec.ports.length; i++) {
-  //           services[i].ports.push(res.body.items[i].spec.ports[j].port);
-  //         }
-  //       }
-  //     });
-  //     res.locals.services = services;
-  //     return next();
-  //   }
-  //   catch (err) {
-  //     return next({
-  //       log: `Error in k8Controller.localServices: ${err}`,
-  //       message: { err: 'An error in k8Controller.localServices occurred.'}
-  //     });
-  //   }
-  // },
   //Getting a list of deployments in our local machine
   localDeployments : async (req: Request, res: Response, next: NextFunction) : Promise<unknown> => {
     try {
